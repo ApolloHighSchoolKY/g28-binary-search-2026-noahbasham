@@ -13,7 +13,7 @@ public class BinarySearch
 
 		while(foundIt==false)
 		{
-			if (top == bottom)
+			if ((ray[bottom] > item && ray[top-1] > item) || (ray[bottom] < item && ray[top-1] < item))
 				return -1;
 			else if(ray[(bottom+top)/2] < item)
 			{
