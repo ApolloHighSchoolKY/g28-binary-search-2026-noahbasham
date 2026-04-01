@@ -4,27 +4,32 @@ public class BinarySearch
 {
 	public static int binarySearch(int[] ray, int item)
 	{
-		Arrays.sort(ray);
-		if(ray[ray.length/2]==item)
-			return ray.length/2;
+		System.out.println(Arrays.toString(ray));
 
-		else if(ray[ray.length/2]<item)
+		Arrays.sort(ray);
+		int bottom = 0;
+		int top = ray.length;
+		boolean foundIt = false;
+
+		while(foundIt==false)
 		{
-			int[] newRay = new int[ray.length/2];
-			for(int i=0; i<newRay.length; i++)
+			if (top == bottom)
+				return -1;
+			else if(ray[(bottom+top)/2] < item)
 			{
-				newRay[i] = ray[i];
+				bottom = (bottom+top)/2;
 			}
-			return binarySearch(newRay, item);
-		}
-		else
-		{
-			int[] newRay = new int[ray.length/2];
-			for(int i=ray.length/2; i<ray.length; i++)
+			else if(ray[(bottom+top)/2] > item)
 			{
-				newRay[i] = ray[i];
+				top = ((bottom+top)/2);
 			}
-			return binarySearch(newRay, item);
+			else if(ray[(bottom+top)/2] == item)
+			{
+				foundIt = true;
+			}
 		}
+		
+		return (top + bottom)/2;
+
 	}
 }
